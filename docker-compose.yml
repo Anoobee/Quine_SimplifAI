@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  mindsdb:
+    image: mindsdb/mindsdb
+    container_name: mindsdb_container
+    ports:
+      - "47334:47334"
+      - "47335:47335"
+    volumes:
+      - ./mdb_data:/root/mdb_storage
+
+  ollama:
+    image: ollama/ollama
+    container_name: ollama_container
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: ${DOCKER_DRIVER}
+              capabilities: [gpu]
+  frontend:
+    build: "./frontend/"
+    container_name: simplifai_frontend
+    ports:
+      - 5173:5173
+
+  backend:
+    build: "./backend/"
+    container_name: simplifai_backend
+    ports:
+      - 8000:8000
+
+volumes:
+  ollama:
