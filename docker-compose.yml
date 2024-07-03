@@ -8,7 +8,9 @@ services:
       - "47334:47334"
       - "47335:47335"
     volumes:
-      - ./mdb_data:/root/mdb_storage
+      - ./backend/mdb_data:/root/mdb_storage
+    networks:
+      - simplifai_network
 
   ollama:
     image: ollama/ollama
@@ -23,17 +25,33 @@ services:
           devices:
             - driver: ${DOCKER_DRIVER}
               capabilities: [gpu]
+    networks:
+      - simplifai_network
+    command: ollama pull anoob/simp2
+
   frontend:
     build: "./frontend/"
     container_name: simplifai_frontend
     ports:
       - 5173:5173
+    networks:
+      - simplifai_network
 
   backend:
     build: "./backend/"
     container_name: simplifai_backend
     ports:
       - 8000:8000
+    environment:
+      MINDS_DB: http://mindsdb:47334
+    depends_on:
+      - mindsdb
+    networks:
+      - simplifai_network
 
 volumes:
   ollama:
+
+networks:
+  simplifai_network:
+    driver: bridge

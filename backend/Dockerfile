@@ -22,14 +22,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the current directory contents into the container at /app
 COPY . .
 
-# Install additional Python packages
-# RUN pip install Django==5.0.6
-# RUN pip install djangorestframework==3.15.2
-# RUN pip install django-cors-headers
-# RUN pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
-# RUN pip install langchain_community
-# RUN pip install paddleocr
-# RUN pip install transformers
+RUN python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
+
+EXPOSE 8000  
 
 # Run the Django server
 CMD ["python", "simplifai/manage.py", "runserver", "0.0.0.0:8000"]

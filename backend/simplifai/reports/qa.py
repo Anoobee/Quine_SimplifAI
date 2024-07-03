@@ -11,10 +11,14 @@ from langchain.callbacks.manager import CallbackManager
 # from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from .to_nepali import nepali_translator as to_np
 from mindsdb_sdk import connect
+from dotenv import load_dotenv
+import os
 
 class QA:
     def __init__(self):
-        self.server = connect('http://127.0.0.1:47334')
+        # load_dotenv()
+        # self.server_url = os.getenv('MINDS_DB')
+        self.server = connect('http://172.17.0.1:47334')
         self.project = self.server.get_project('mindsdb')
         self.model = self.project.get_model('simplifai')
 

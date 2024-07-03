@@ -2,5 +2,6 @@ myenv
 db
 __pycache__
 .vscode
-mdb_data
+mbd_data
 package-lock.json
+backend/mdb_data
