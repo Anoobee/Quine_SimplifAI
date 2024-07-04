@@ -3,6 +3,7 @@
 - Minimun 8GB RAM
 - Recommended 16 GB
 - Docker or Docker Desktop
+- 100 GB of patience
 
 
 ## Prerequisites:
