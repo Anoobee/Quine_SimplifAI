@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 
 services:
   mindsdb:
@@ -19,12 +19,14 @@ services:
       - "11434:11434"
     volumes:
       - ollama:/root/.ollama
+    # comment out this deploy part for cpu only
     deploy:
       resources:
         reservations:
           devices:
-            - driver: ${DOCKER_DRIVER}
-              capabilities: [gpu]
+            - driver: ${DOCKER_DRIVER:-nvidia}
+              count: 0
+              capabilities: ["${SOME_VALUE:-gpu}"]
     networks:
       - simplifai_network
     command: ollama pull anoob/simp2

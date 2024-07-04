@@ -101,7 +101,7 @@ class ReportView(APIView):
 
             ReportText.objects.create(report=report, text=text)
 
-            text  = text + "\n Interpret and Summarize the above text"
+            text  = text + "\n This is a medical report. your tast is analyse the report , explain me the report in simple terms without using complex medical terminologies"
             print(f"text: {text}")
             response = qa._ask_non_rag(text , isDoctor, isEnglish)
 

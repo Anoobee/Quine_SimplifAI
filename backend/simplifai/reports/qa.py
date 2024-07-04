@@ -1,23 +1,21 @@
-import argparse
 
-# from langchain_community.llms import Ollama
 from langchain_community.embeddings import GPT4AllEmbeddings
 from langchain_community.vectorstores import Chroma
-
 from langchain_core.prompts import PromptTemplate
-# from langchain.chains import RetrievalQA
-
 from langchain.callbacks.manager import CallbackManager
-# from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from .to_nepali import nepali_translator as to_np
 from mindsdb_sdk import connect
 from dotenv import load_dotenv
 import os
+from create_model_in_mindsdb import setup_mindsdb
 
 class QA:
     def __init__(self):
         # load_dotenv()
         # self.server_url = os.getenv('MINDS_DB')
+        # self.server = connect(http://172.17.0.1:47334)
+        setup_mindsdb()
+        
         self.server = connect('http://172.17.0.1:47334')
         self.project = self.server.get_project('mindsdb')
         self.model = self.project.get_model('simplifai')
@@ -28,7 +26,7 @@ class QA:
         template_simple = f"""Answer the question at the end.
         If you don't know the answer, just say that you don't know, don't try to make up an answer.
         you can't give a false answer,
-        Answer in very simple words
+        Answer in very simple words without using complex medical terminologies
         
         Question: {query}
         Helpful Answer:"""
@@ -36,10 +34,10 @@ class QA:
         template_doctor= f"""Answer the question at the end.
         If you don't know the answer, just say that you don't know, don't try to make up an answer.
         you can't give a false answer,
-        Answer using medical terms
+        Answer using strong medical terms
         
         Question: {query}
-        Helpful Answer:"""
+        Helpful Answer: """
 
         if isDoctor:
             template = template_doctor

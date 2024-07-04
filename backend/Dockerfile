@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
 # Ensure pip is up-to-date
 RUN pip install --upgrade pip
 
+RUN apt-get update && apt-get install -y libglib2.0-0
 # Copy the requirements file first to leverage Docker cache
 COPY requirements.txt requirements.txt
 
@@ -22,7 +23,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the current directory contents into the container at /app
 COPY . .
 
-RUN python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
 
 EXPOSE 8000  
 
