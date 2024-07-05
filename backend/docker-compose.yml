@@ -1,32 +1,13 @@
 version: "3.9"
 
 services:
-  mindsdb:
-    image: mindsdb/mindsdb
-    container_name: mindsdb_container
-    ports:
-      - "47334:47334"
-      - "47335:47335"
-    volumes:
-      - ./backend/mdb_data:/root/mdb_storage
-    networks:
-      - simplifai_network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:47334"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 40s
-
   ollama:
-    # build: "./ollama/"
     image: ollama/ollama
     container_name: ollama_container
     ports:
       - "11434:11434"
     volumes:
       - ollama:/root/.ollama
-    # comment out this deploy part for cpu only
     deploy:
       resources:
         reservations:
@@ -34,7 +15,6 @@ services:
             - driver: ${DOCKER_DRIVER:-nvidia}
               count: 0
               capabilities: ["${SOME_VALUE:-gpu}"]
-
     networks:
       - simplifai_network
 
@@ -57,29 +37,7 @@ services:
       "
     networks:
       - simplifai_network
-
-  frontend:
-    build: "./frontend/"
-    container_name: simplifai_frontend
-    ports:
-      - 5173:5173
-    networks:
-      - simplifai_network
-
-  backend:
-    build: "./backend/"
-    container_name: simplifai_backend
-    ports:
-      - 8000:8000
-    environment:
-      MINDS_DB: http://mindsdb:47334
-
-    depends_on:
-      mindsdb:
-        condition: service_healthy
-    networks:
-      - simplifai_network
-
+  
 volumes:
   ollama:
 

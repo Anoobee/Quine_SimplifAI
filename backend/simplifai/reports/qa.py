@@ -7,7 +7,7 @@ from .to_nepali import nepali_translator as to_np
 from mindsdb_sdk import connect
 from dotenv import load_dotenv
 import os
-from create_model_in_mindsdb import setup_mindsdb
+from .create_model_in_mindsdb import setup_mindsdb
 
 class QA:
     def __init__(self):
