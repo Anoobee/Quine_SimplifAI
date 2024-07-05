@@ -104,6 +104,15 @@ navigate to frontend/
    npm install
    npm run dev
 ```
+### Getting APP for SimplifAI: Build PWA for your Mobile Devices
+
+```
+npm run build
+npx serve dist
+```
+
+-Hit the Local Network IP as indicated on the Terminal<br>
+-Save the PWA.<br>
 ### Run backend 
 Set up a virtual environment and activate it:
 
