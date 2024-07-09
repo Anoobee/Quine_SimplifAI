@@ -4,7 +4,7 @@
 
 ## Table of Contents
 - [Introduction](#introduction)
-- [Vidoes](#videos)
+- [Videos](#videos)
 - [Installation](#installation)
 - [Contributing](#contributing)
 
