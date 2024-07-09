@@ -4,7 +4,7 @@
 
 ## Table of Contents
 - [Introduction](#introduction)
-- [Demo](#videos)
+- [Vidoes](#videos)
 - [Installation](#installation)
 - [Contributing](#contributing)
 
@@ -26,7 +26,10 @@ This uses Ollama as model engine and Mindsdb for database storing model as tabel
 - [SimplifAI](https://ollama.com/anoob/simp2)
   
 ## Videos
-https://www.youtube.com/watch?v=BbqhxsEXd7Q
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/BbqhxsEXd7Q/0.jpg)](http://www.youtube.com/watch?v=BbqhxsEXd7Q "SimplifAI with Mindsdb and Ollama")
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/uwFoE7b6DcI/0.jpg)](http://www.youtube.com/watch?v=uwFoE7b6DcI "SimplifAI || Mobile APP view")
+
+
 
 ## Installation
 For the installation guide, checkout [Installation Guide.md](./installation_guide.md)
